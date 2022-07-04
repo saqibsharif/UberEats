@@ -11,22 +11,6 @@ export const localRestaurants = [
         reviews: 1244,
         rating: 4.5,
     },
-    {
-        name: "Lahori Gate",
-        imageUrl: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGZvb2R8ZW58MHx8MHx8&w=1000&q=80",
-        categories: ["Desi", "Continental"],
-        price: "$$",
-        reviews: 656,
-        rating: 3.7,
-    },
-    {
-        name: "Chick fil A",
-        imageUrl: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGZvb2R8ZW58MHx8MHx8&w=1000&q=80",
-        categories: ["Fast Food", "Desi"],
-        price: "$$$",
-        reviews: 780,
-        rating: 4.7,
-    },
 ];
 
 export default function RestaurantItems(props){
