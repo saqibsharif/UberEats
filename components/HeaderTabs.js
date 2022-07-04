@@ -8,7 +8,7 @@ export default function HeaderTabs(){
     return(
         <View style={styles.HeaderButton}>
             <HeaderButton
-            text="Delivery"
+            text="Deliveryy"
             buttonColor="black"
             textColor="white"
             activeTab={activeTab}
