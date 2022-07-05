@@ -6,7 +6,7 @@ export default function HeaderTabs(props){
     return(
         <View style={styles.HeaderButton}>
             <HeaderButton
-            text="Deliveryy"
+            text="Delivery"
             buttonColor="black"
             textColor="white"
             activeTab={props.activeTab}
