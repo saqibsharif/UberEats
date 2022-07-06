@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
-import { View, SafeAreaView, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
+import SafeAreaView from 'react-native-safe-area-view';
 import BottomTabs from "../components/home/BottomTabs";
 import Categories from "../components/home/Categories";
 import HeaderTabs from "../components/home/HeaderTabs";
 import RestaurantItems, { localRestaurants } from "../components/home/RestaurantItems";
 import SearchBar from "../components/home/SearchBar";
 
-export default function Home(){
+export default function Home({navigation}){
 
     const [restaurantData, setRestaurantData] = useState(localRestaurants);
     const [city, setCity] = useState("San Francisco");

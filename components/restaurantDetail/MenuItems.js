@@ -1,5 +1,7 @@
 import React from "react";
-import { Text, View, Image, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { Text, View, Image, StyleSheet, ScrollView} from "react-native";
+import SafeAreaView from 'react-native-safe-area-view';
+import { Divider } from "react-native-elements";
 
 const foods = [
     {
@@ -39,9 +41,12 @@ export default function MenuItems(){
         <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
         {foods.map((food, index) => (
-        <View key={index} style={styles.menuItem}>
+        <View key={index} >
+        <View style={styles.menuItem}>
             <FoodInfo food={food} />
             <ItemImage food={food}/>
+        </View>
+        <Divider width={0.5} orientation="vertical" style={{marginHorizontal:20}}/>
         </View>
         ))}
         </ScrollView>
