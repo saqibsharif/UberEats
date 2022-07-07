@@ -39,7 +39,7 @@ export default function Home({navigation}){
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
         <Categories/>
-        <RestaurantItems restaurantData={restaurantData}/>
+        <RestaurantItems restaurantData={restaurantData} navigation={navigation}/>
         </ScrollView>
         <BottomTabs activeBottomTab={activeBottomTab} setActiveBottomTab={setActiveBottomTab}/>
         </SafeAreaView>
