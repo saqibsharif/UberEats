@@ -12,7 +12,7 @@ export default function RestaurantDetails({route, navigation}){
         {/* Getting the restaurant details from route passed from RestaurantItem component in HomeScreen and passing it to About Component */}
         <About route={route}/>
         <Divider width={1.8} style={styles.Divider}/>
-        <MenuItems/>
+        <MenuItems restaurantName={route.params.name}/>
         </View>
         <ViewCart navigation={navigation} restaurantName={route.params.name} />
         </>

@@ -3,6 +3,7 @@ import { Text, View, Image, StyleSheet, ScrollView} from "react-native";
 import SafeAreaView from 'react-native-safe-area-view';
 import { Divider } from "react-native-elements";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useDispatch, useSelector } from "react-redux";
 
 const foods = [
     {
@@ -35,9 +36,24 @@ const foods = [
         price:"$5.8",
         image:"https://www.kitchensanctuary.com/wp-content/uploads/2015/02/Chicken-Shawarma-square-FS-57.jpg",
     },
-]
+];
 
-export default function MenuItems(){
+
+
+export default function MenuItems(props){
+
+    const dispatch = useDispatch();
+    const selectItem = (item, checkboxValue) => dispatch({
+        type: "ADD_TO_CART",
+        payload:{ ...item, restaurantName: props.restaurantName, checkboxValue: checkboxValue}
+    });
+
+    const cartItems = useSelector((state) => state.cartReducer.selectedItems.items);
+
+    const isFoodInCart = (food, cartItems) => (
+        Boolean(cartItems.find((item) => item.title == food.title)));
+    
+
     return(
         <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -47,6 +63,8 @@ export default function MenuItems(){
             <BouncyCheckbox
                 iconStyle={{borderColor: "lightGray", borderRadius:0}}
                 fillColor="green"
+                onPress={(checkboxValue) => selectItem(food, checkboxValue)}
+                isChecked={isFoodInCart(food, cartItems)}
             />
             <FoodInfo food={food} />
             <ItemImage food={food}/>
@@ -75,13 +93,13 @@ const ItemImage = (props) => (
 const styles = StyleSheet.create({
     itemImage:{
         borderRadius: 8,
-        width: 100,
-        height: 100,
+        width: 90,
+        height: 90,
     },
     menuItem:{
         flexDirection:"row",
         justifyContent: 'space-between',
-        margin: 20,
+        margin: 9,
     },
     itemInfo:{
         width:240,
