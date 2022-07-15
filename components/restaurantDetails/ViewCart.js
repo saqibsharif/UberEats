@@ -2,8 +2,11 @@ import React, {useState} from "react";
 import {View, Text, StyleSheet, TouchableOpacity, Modal} from "react-native";
 import { useSelector } from "react-redux";
 import OrderItem from "./OrderItem";
+import LottieView from "lottie-react-native";
 
-export default function ViewCart(){
+export default function ViewCart({navigation}){
+
+    const [loading, setLoading] = useState(false);
 
     const [modalVisible, setModalVisible] = useState(false);
     const {items, restaurantName} = useSelector((state) => state.cartReducer.selectedItems);
@@ -12,6 +15,15 @@ export default function ViewCart(){
         style: "currency",
         currency: "USD",
     });
+
+    const addToFirebase = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            navigation.navigate("OrderCompleted");
+        }, 2500);
+    }
+
 
     const checkoutModalContent = () => {
         return(
@@ -39,7 +51,10 @@ export default function ViewCart(){
                             position: "relative",
                             flexDirection: 'row',
                             }}
-                            onPress={() => setModalVisible(false)}>
+                            onPress={() => {
+                                addToFirebase();
+                                setModalVisible(false);
+                            }}>
                         <Text style={{color:'white', fontSize: 20}}>Checkout</Text>
                         <Text style={{color:'white', position: 'absolute', right:15, fontSize: 20 }}>{total ? totalUSD : ""}</Text>
                         </TouchableOpacity>
@@ -77,6 +92,22 @@ export default function ViewCart(){
         </View>
         </View>
         ): (<></>)}
+        {loading ?
+        <View 
+        style={{
+            backgroundColor: "black",
+            position: "absolute",
+            opacity: 0.6,
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%"}}>
+                <LottieView style={{height: 200}}
+                    source={require('../../assets/animations/scanner.json')}
+                    autoPlay
+                    speed={3}
+                />
+            </View> : <></>}
         </>
     );
 }
@@ -117,6 +148,3 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     }
 });
-
-{/* style={{flex:1, alignItems: "center", flexDirection: "row", position:"absolute", bottom:130, zIndex:999,}}
-    style={{flexDirection: "row", justifyContent: "center", width: "100%"}}*/}
